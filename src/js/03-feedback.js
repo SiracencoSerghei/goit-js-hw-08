@@ -24,20 +24,26 @@ if (savedFeedbackState) {
   messageInput.value = feedbackState.message;
 }
 
-// Обработка события input на полях формы
+// Обработка события input на полях формы + trim()....
 emailInput.addEventListener('input', event => {
-  feedbackState.email = event.target.value;
+  feedbackState.email = event.target.value.trim();
   saveFeedbackStateToLocalStorage();
 });
 
 messageInput.addEventListener('input', event => {
-  feedbackState.message = event.target.value;
+  feedbackState.message = event.target.value.trim();
   saveFeedbackStateToLocalStorage();
 });
+
 
 // Обработка события submit на форме
 feedbackForm.addEventListener('submit', event => {
   event.preventDefault();
+  // проверка полей ввода на пробел
+  if (emailInput.value === '' || messageInput.value === '') {
+    alert('Please fill all fields');
+    return;
+  }
   console.log('Отправленное сообщение:', feedbackState);
   localStorage.removeItem(LOCAL_STORAGE_KEY);
   emailInput.value = '';

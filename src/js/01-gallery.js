@@ -19,6 +19,3 @@ let gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionPosition: 'bottom',
 });
-gallery.on('show.simplelightbox', function () {
-  // do something…
-});
